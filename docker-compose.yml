@@ -1,0 +1,16 @@
+version: '2'
+services:
+    deluge:
+        build:
+            context: deluge
+        volumes:
+            - data:/deluge/completed
+    web:
+        build:
+            context: nginx
+        ports:
+            - 443:443
+        volumes:
+            - data:/deluge/completed
+volumes:
+    data:
