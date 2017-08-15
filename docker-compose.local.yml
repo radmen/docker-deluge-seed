@@ -1,0 +1,16 @@
+version: '2'
+services:
+    deluge:
+        extends:
+            file: docker-compose.yml
+            service: deluge
+        build:
+            context: deluge
+    web:
+        extends:
+            file: docker-compose.yml
+            service: web
+        build:
+            context: nginx
+volumes:
+    data:

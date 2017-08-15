@@ -1,13 +1,11 @@
 version: '2'
 services:
     deluge:
-        build:
-            context: deluge
+        image: radmen/deluge-seed:deluge
         volumes:
             - data:/deluge/completed
     web:
-        build:
-            context: nginx
+        image: radmen/deluge-seed:web
         ports:
             - 443:443
         volumes:
