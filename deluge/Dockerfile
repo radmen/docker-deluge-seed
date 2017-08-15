@@ -10,8 +10,7 @@ RUN apk add --no-cache deluge \
 RUN pip install incremental \
         constantly \
         automat \
-        service_identity \
-        xkcdpass
+        service_identity
 
 RUN mkdir -p /deluge/config \
         /deluge/config/state \
