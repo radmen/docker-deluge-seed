@@ -7,10 +7,17 @@ RUN apk add --no-cache deluge \
         gettext \
         openssl
 
-RUN pip install incremental \
-        constantly \
-        automat \
-        service_identity
+RUN apk add -t .deps --no-cache gcc \
+                python2-dev \
+                linux-headers \
+                musl-dev \
+                libffi-dev \
+                openssl-dev \
+        && pip install incremental \
+                constantly \
+                automat \
+                service_identity \
+        && apk del .deps
 
 RUN mkdir -p /deluge/config \
         /deluge/config/state \
@@ -19,10 +26,10 @@ RUN mkdir -p /deluge/config \
         /deluge/torrents
 
 COPY container /
+COPY entrypoint.sh /entrypoint.sh
 
 VOLUME /deluge/completed
 
 EXPOSE 8112
-
-COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["deluge-web", "-c", "/deluge/config", "-d"]

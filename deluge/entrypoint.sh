@@ -10,4 +10,4 @@ export DELUGE_PWD_SHA1
 
 envsubst < /deluge/config/web.conf.tmpl > /deluge/config/web.conf
 
-deluge-web -c /deluge/config $@
+exec $@
