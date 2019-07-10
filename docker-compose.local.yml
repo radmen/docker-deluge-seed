@@ -12,5 +12,7 @@ services:
             service: web
         build:
             context: nginx
+        ports:
+            - 8080:443
 volumes:
     data:
